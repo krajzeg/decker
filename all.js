@@ -7599,7 +7599,7 @@ Ice.prototype.GetEffectiveRating = function(nType, bIncludeAnalyze=true) {
 		nRating -= 4;
 
 	// If scanned, reduce rating
-	if (this.bIncludeAnalyze)
+	if (bIncludeAnalyze)
 		nRating -= this.m_nAnalyzed;
 
 	// Modify according to rating type
