@@ -499,6 +499,9 @@ const NT_JUNC		= 5;	// Junction
 const NT_PORTAL_IN	= 6;	// Portal
 const NT_PORTAL_OUT	= 7;	// Portal
 
+// Scannable node types
+const SCANNABLE_NODE_TYPES = [NT_DS, NT_IO, NT_COP]
+
 // Directions
 const DIR_NORTH		= 0;
 const DIR_EAST		= 1;
@@ -11812,7 +11815,8 @@ MV.UpdateControls = function() {
 	MV.l_bmbButton[0].enable( g_pChar.m_pDefAttackProgram !== null && (g_pChar.m_pTargettedIce !== null || g_pChar.m_pDefAttackProgram.m_nClass === PROGRAM_ATTACK_A) ); // attack
 	MV.l_bmbButton[2].enable( g_pChar.FindProgram(PROGRAM_DECEIVE) !== null && g_pChar.m_pTargettedIce !== null ); // deceive
 	MV.l_bmbButton[6].enable( g_pChar.FindProgram(PROGRAM_ANALYZE) !== null && g_pChar.m_pTargettedIce !== null ); // view ice
-	MV.l_bmbButton[8].enable( (g_pChar.m_pCurrentNode.m_nType === NT_DS || g_pChar.m_pCurrentNode.m_nType === NT_IO) && g_pChar.FindProgram(PROGRAM_SCAN) !== null ); // scan
+	let bNodeScannable = SCANNABLE_NODE_TYPES.indexOf(g_pChar.m_pCurrentNode.m_nType) >= 0;
+	MV.l_bmbButton[8].enable( bNodeScannable && g_pChar.FindProgram(PROGRAM_SCAN) !== null ); // scan
 
 	// Software control buttons
 	let pProgram = MV.l_tProgramList.getSelected();
